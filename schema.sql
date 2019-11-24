@@ -1,15 +1,20 @@
-DROP TABLE IF EXISTS local_publico
-DROP TABLE IF EXISTS item
-DROP TABLE IF EXISTS anomalia
-DROP TABLE IF EXISTS anomalia_id
-DROP TABLE IF EXISTS anomalia_traducao
-DROP TABLE IF EXISTS duplicado
-DROP TABLE IF EXISTS utilizador
-DROP TABLE IF EXISTS utilizador_qualificado
-DROP TABLE IF EXISTS utilizador_regular
-DROP TABLE IF EXISTS incidencia
-DROP TABLE IF EXISTS proposta_de_correcao
-DROP TABLE IF EXISTS correcao
+DROP TABLE IF EXISTS duplicado;
+DROP TABLE IF EXISTS correcao;
+
+DROP TABLE IF EXISTS proposta_de_correcao;
+
+DROP TABLE IF EXISTS incidencia;
+
+DROP TABLE IF EXISTS utilizador_qualificado;
+DROP TABLE IF EXISTS utilizador_regular;
+DROP TABLE IF EXISTS utilizador;
+
+
+DROP TABLE IF EXISTS anomalia_traducao;
+DROP TABLE IF EXISTS anomalia;
+DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS local_publico;
+
 
 create table local_publico (
 	latitude integer,
@@ -18,7 +23,7 @@ create table local_publico (
 	primary key (latitude, longitude),
 	check(-90 <= latitude and latitude <= 90),
 	check(-180 <= longitude and longitude <= 180)
-)
+);
 
 create table item (
 	id integer,
@@ -27,11 +32,9 @@ create table item (
 	latitude integer,
 	longitude integer,
 	primary key (id),
-	foreign key (latitude)
-		references local_publico),
-	foreign key (longitude)
-		references local_publico)
-)
+	foreign key (latitude, longitude)
+		references local_publico(latitude, longitude)
+);
 
 create table anomalia (
 	id integer,
@@ -41,7 +44,7 @@ create table anomalia (
 	descricao varchar(1024),
 	tem_anomalia_redacao boolean,
 	primary key (id)
-)
+);
 
 create table anomalia_traducao (
 	id integer,
@@ -49,8 +52,8 @@ create table anomalia_traducao (
 	lingua2 varchar(40),
 	primary key (id),
 	foreign key (id)
-		references (anomalia)
-)
+		references anomalia
+);
 
 create table duplicado (
 	item1 integer,
@@ -60,27 +63,27 @@ create table duplicado (
 		references item,
 	foreign key (item2)
 		references item
-)
+);
 
 create table utilizador (
 	email varchar(50),
 	password varchar(30),
 	primary key (email)
-)
+);
 
 create table utilizador_qualificado (
 	email varchar(50),
 	primary key (email),
 	foreign key (email)
 		references utilizador
-)
+);
 
 create table utilizador_regular(
 	email varchar(50),
 	primary key (email),
 	foreign key (email)
 		references utilizador
-)
+);
 
 create table incidencia (
 	anomalia_id integer,
@@ -93,7 +96,7 @@ create table incidencia (
 		references item,
 	foreign key (email)
 		references utilizador
-)
+);
 
 create table proposta_de_correcao(
 	email varchar(50),
@@ -103,7 +106,7 @@ create table proposta_de_correcao(
 	primary key (email, nro),
 	foreign key (email)
 		references utilizador_qualificado
-)
+);
 
 create table correcao (
 	email varchar(50),
@@ -111,7 +114,7 @@ create table correcao (
 	anomalia_id integer,
 	primary key (email, nro, anomalia_id),
 	foreign key (email, nro)
-		references proposta_de_correcao,
+		references proposta_de_correcao(email, nro),
 	foreign key (anomalia_id)
 		references incidencia
-)
+);
