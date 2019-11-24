@@ -2,7 +2,7 @@ import random
 from datetime import datetime
 import linecache
 
-postgres_box_str = "( ( %d , %d ) , ( ( %d , %d ) )"
+postgres_box_str = "( ( %d , %d ) , ( %d , %d ) )"
 qualified_emails = []
 def sqlBox(box):
     return postgres_box_str % (box[0][0] , box[0][1], box[1][0], box[1][1])
@@ -29,10 +29,10 @@ def popItem(identifier, desc, loc, lat, longi, fds):
         insertTable("duplicado", [str(identifier), str(random.randint(1, identifier - 1))], fds)
 
 def popAnomalia(identifier, box, bytea , lingua, desc, tem_anom_red, fds):
-    insertTable("anomalia", [identifier, sqlBox(box), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
+    insertTable("anomalia", [identifier, sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
 
 def popAnomaliaTrad(identifier, box, l2, fds):
-    insertTable("anomalia_traducao", [identifier, sqlBox(box), sqlString(l2)], fds)
+    insertTable("anomalia_traducao", [identifier, sqlString(sqlBox(box)), sqlString(l2)], fds)
 
 def popPropCorrecao(email, nro, timestamp, desc, fds):
     insertTable("proposta_de_correcao", [email, nro, timestamp, desc], fds)
@@ -105,13 +105,18 @@ def main():
                 counter +=1
 
     #incidencias
+    tempaID = aID
+    presentaiD = []
     for aidentifier in aID:
-        popIncidencia(random.choice(aID), random.choice(iID), random.choice(emails), sqlFile)
+        chosen = random.choice(tempaID)
+        presentaiD.append(chosen)
+        popIncidencia(chosen, random.choice(iID), random.choice(emails), sqlFile)
+        tempaID.remove(chosen)
 
     counter = 1
     for email in qualified_emails:
         popPropCorrecao(email, str(counter), sqlString(str(datetime.now())), sqlString(str(linecache.getline('descriptions.txt', counter))[:-1]),sqlFile)
-        popCorrecao(email, str(counter), str(random.choice(aID)), sqlFile)
+        popCorrecao(email, str(counter), str(random.choice(presentaiD)), sqlFile)
 
         counter += 1
 
