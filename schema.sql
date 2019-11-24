@@ -22,8 +22,8 @@ create table local_publico (
 
 create table item (
 	id integer,
-	descricao varchar(1024),	
-	localizacao varchar(30),
+	descricao varchar(1024),
+	localizacao varchar(31),
 	latitude integer,
 	longitude integer,
 	primary key (id),
@@ -35,12 +35,12 @@ create table item (
 
 create table anomalia (
 	id integer,
-	zona box,	
+	zona box,
 	imagem bytea,
 	lingua varchar(40),
 	descricao varchar(1024),
 	tem_anomalia_redacao boolean,
-	primary key (id)	
+	primary key (id)
 )
 
 create table anomalia_traducao (
