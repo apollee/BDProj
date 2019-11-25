@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title>Inserir Item</title>
@@ -7,7 +6,7 @@
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Inserir item:</h1>
-        <form id="form_insert_item">
+        <form id="form_insert_item" action="insert_item.php" method="post">
             <h3>Localização</h3>
             <input type="text" name="localizacao_item"></input><br>
             <h3>Latitude:</h3>

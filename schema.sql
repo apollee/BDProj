@@ -37,6 +37,7 @@ create table anomalia (
 	id integer,
 	zona box,	
 	imagem bytea,
+	ts timestamp,
 	lingua varchar(40),
 	descricao varchar(1024),
 	tem_anomalia_redacao boolean,
