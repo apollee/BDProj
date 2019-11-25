@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS correcao;
 
 DROP TABLE IF EXISTS proposta_de_correcao;
 
-DROP TABLE IF EXISTS incidencia;
+DROP TABLE IF EXISTS incidencia CASCADE;
 
 DROP TABLE IF EXISTS utilizador_qualificado;
 DROP TABLE IF EXISTS utilizador_regular;
@@ -33,7 +33,7 @@ create table item (
 	longitude integer,
 	primary key (id),
 	foreign key (latitude, longitude)
-		references local_publico(latitude, longitude)
+		references local_publico(latitude, longitude) ON DELETE CASCADE
 );
 
 create table anomalia (
@@ -47,12 +47,12 @@ create table anomalia (
 );
 
 create table anomalia_traducao (
-	id SERIAL,
+	id integer,
 	zona2 box,
 	lingua2 varchar(40),
 	primary key (id),
 	foreign key (id)
-		references anomalia
+		references anomalia ON DELETE CASCADE
 );
 
 create table duplicado (
@@ -62,28 +62,28 @@ create table duplicado (
 	foreign key (item1)
 		references item,
 	foreign key (item2)
-		references item,
+		references item ON DELETE CASCADE,
 	check(item1 < item2)
 );
 
 create table utilizador (
 	email varchar(50),
 	password varchar(30),
-	primary key (email)
+	primary key (email) 
 );
 
 create table utilizador_qualificado (
 	email varchar(50),
 	primary key (email),
 	foreign key (email)
-		references utilizador
+		references utilizador ON DELETE CASCADE
 );
 
 create table utilizador_regular(
 	email varchar(50),
 	primary key (email),
 	foreign key (email)
-		references utilizador
+		references utilizador ON DELETE CASCADE
 );
 
 create table incidencia (
@@ -96,7 +96,7 @@ create table incidencia (
 	foreign key (item_id)
 		references item,
 	foreign key (email)
-		references utilizador
+		references utilizador ON DELETE CASCADE
 );
 
 create table proposta_de_correcao(
@@ -106,7 +106,7 @@ create table proposta_de_correcao(
 	texto varchar(1024),
 	primary key (email, nro),
 	foreign key (email)
-		references utilizador_qualificado
+		references utilizador_qualificado ON DELETE CASCADE
 );
 
 create table correcao (
@@ -117,5 +117,6 @@ create table correcao (
 	foreign key (email, nro)
 		references proposta_de_correcao(email, nro),
 	foreign key (anomalia_id)
-		references incidencia
+		references incidencia ON DELETE CASCADE
 );
+
