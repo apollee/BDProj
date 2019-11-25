@@ -42,12 +42,16 @@
         </table>
         <div>
             <form id="form_remove_place" action="remove_place_final.php" method="post">
-                <h2>Latitude:</h2>
-                <input name='latitude_local' type='text'>
-                <h2>Longitude:</h2>
-                <input name='longitude_local' type="text">
-                <button onclick="location.href='main.html'" type="button">Cancelar</button>
-                <input type="submit" value="Submeter">
+                <div>
+                    <h3>Latitude:</h3>
+                    <input name='latitude_local' type='text'>
+                    <h3>Longitude:</h3>
+                    <input name='longitude_local' type="text">
+                </div>
+                <div>
+                    <button onclick="location.href='main.html'" type="button">Cancelar</button>
+                    <input type="submit" value="Submeter">
+                </div>
             </form>
         </div>
     </body>

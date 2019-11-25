@@ -1,10 +1,11 @@
 <html>
       <head>
-            <title>Local Inserido</title>
-            <link rel="stylesheet" href="place.css">
+            <title>Anomalia Inserida</title>
+            <link rel="stylesheet" href="anomaly.css">
       </head>
       <body>
       <?php
+            $caught = false;
             try {
                   $zona = $_REQUEST['zona_anomalia'];
                   $lingua = $_REQUEST['lingua_anomalia'];
@@ -13,7 +14,6 @@
                   $anomalia_redacao = $_REQUEST['tem_anomalia_redacao'];
                   $imagem = $_REQUEST['foto_anomalia'];
 
-                  echo("<p>$anomalia_redacao</p>\n");
                   if($anomalia_redacao != false){
                         $anomalia_redacao = true;
                   }
@@ -36,8 +36,17 @@
                   $db = null;
             }
             catch (PDOException $e){
+                  $caught = true;
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+            if(!$caught){
+                  echo("<h1>Inserida anomalia com sucesso!</h1>");
+            }else{
+                  echo("<h1>A inserção da anomalia falhou.</h1>");
+            }
       ?>
+      <div>
+            <button onclick="location.href='main.html'" type="button">Home</button>
+      </div>
       </body>
 </html>

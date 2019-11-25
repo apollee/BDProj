@@ -1,16 +1,14 @@
 <html>
       <head>
-            <title>Item Inserido</title>
+            <title>Remover local</title>
             <link rel="stylesheet" href="item.css">
       </head>
       <body>
       <?php
+            $caugh = false;
             try {
                   $latitude = $_REQUEST['latitude_local'];
                   $longitude = $_REQUEST['longitude_local'];
-
-                  echo("<h1>$latitude</h1>");
-                  echo("<h1>$longitude</h1>");
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -30,8 +28,17 @@
                   $db = null;
             }
             catch (PDOException $e){
+                  $caught = true;
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+            if(!$caught){
+                  echo("<h1>Removido local com sucesso!</h1>");
+            }else{
+                  echo("<h1>A remoção do local falhou.</h1>");
+            }
       ?>
+      <div>
+            <button onclick="location.href='main.html'" type="button">Home</button>
+      </div>
       </body>
 </html>

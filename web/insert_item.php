@@ -5,16 +5,12 @@
       </head>
       <body>
       <?php
+            $caught = false;
             try {
                   $localizacao = $_REQUEST['localizacao_item'];
                   $latitude = $_REQUEST['latitude_item'];
                   $longitude = $_REQUEST['longitude_item'];
                   $descricao = $_REQUEST['descricao_item'];
-
-                  echo("<h1>$localizacao</h1>");
-                  echo("<h1>$latitude</h1>");
-                  echo("<h1>$longitude</h1>");
-                  echo("<h1>$descricao</h1>");
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -25,7 +21,7 @@
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                   
-                  $sql = "INSERT into item (id, localizacao, latitude, longitude, descricao) values ( 24, ?, ?, ?, ?);";
+                  $sql = "INSERT into item (id, localizacao, latitude, longitude, descricao) values ( default, ?, ?, ?, ?);";
 
                   $result = $db->prepare($sql);
 
@@ -34,8 +30,17 @@
                   $db = null;
             }
             catch (PDOException $e){
+                  $caught = true;
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+            if(!$caught){
+                  echo("<h1>Inserido item com sucesso!</h1>");
+            }else{
+                  echo("<h1>A inserção do item falhou.</h1>");
+            }
       ?>
+      <div>
+            <button onclick="location.href='main.html'" type="button">Home</button>
+      </div>
       </body>
 </html>
