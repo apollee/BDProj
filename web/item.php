@@ -9,11 +9,11 @@
         <form id="form_insert_item" action="insert_item.php" method="post">
             <h3>Localização</h3>
             <input type="text" name="localizacao_item"></input><br>
-            <h3>Latitude:</h3>
+            <h3>Latitude</h3>
             <input type="text" name="latitude_item"></input><br>
-            <h3>Longitude:</h3>
+            <h3>Longitude</h3>
             <input type="text" name="longitude_item"></input><br>
-            <h3 style="display:initial">Descrição:</h3>
+            <h3 style="display:initial">Descrição</h3>
             <textarea name="descricao_item" id="description"></textarea></input><br>
             <div>
                 <button onclick="location.href='main.html'" type="button">Cancelar</button>

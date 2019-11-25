@@ -25,6 +25,7 @@ h3 {
     color: #f0f0f0;
     display: inline;
     vertical-align: top;
+    text-align: left;
 }
 
 input {
@@ -69,6 +70,7 @@ button {
 }
 
 form {
+    margin: 0 auto;
     text-align: center;
     height: 100%;
     width: 100%;
