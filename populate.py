@@ -28,8 +28,8 @@ def popItem(identifier, desc, loc, lat, longi, fds):
     if (identifier % 5) == 0:
         insertTable("duplicado", [ str(random.randint(1, identifier - 1)), str(identifier)], fds)
 
-def popAnomalia(identifier, box, bytea , lingua, desc, tem_anom_red, fds):
-    insertTable("anomalia", ["DEFAULT", sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
+def popAnomalia(identifier, box, bytea , timestamp, lingua, desc, tem_anom_red, fds):
+    insertTable("anomalia", ["DEFAULT", sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), timestamp, sqlString(lingua), sqlString(desc), tem_anom_red], fds)
 
 def popAnomaliaTrad(identifier, box, l2, fds):
     insertTable("anomalia_traducao", [str(identifier), sqlString(sqlBox(box)), sqlString(l2)], fds)
@@ -95,7 +95,7 @@ def main():
             counter = 1
             for desc in descriptions:
                 lingua_1 = random.choice(languages)
-                popAnomalia(str(counter), ((10, 10), (20, 20)), "", lingua_1,desc[:-1], "TRUE", sqlFile)
+                popAnomalia(str(counter), ((10, 10), (20, 20)), "", sqlString(str(datetime.now())), lingua_1,desc[:-1], "TRUE", sqlFile)
                 aID.append(counter)
                 if((counter % 6) == 0):
                     lingua_2 = random.choice(languages)
