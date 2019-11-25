@@ -24,15 +24,15 @@ def popLocalPublico(lat, longi, name, fds):
 
 
 def popItem(identifier, desc, loc, lat, longi, fds):
-    insertTable("item", [desc, loc, lat, longi], fds)
+    insertTable("item", ["DEFAULT", desc, loc, lat, longi], fds)
     if (identifier % 5) == 0:
-        insertTable("duplicado", [str(random.randint(1, identifier - 1))], fds)
+        insertTable("duplicado", [ str(random.randint(1, identifier - 1)), str(identifier)], fds)
 
 def popAnomalia(identifier, box, bytea , lingua, desc, tem_anom_red, fds):
-    insertTable("anomalia", [sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
+    insertTable("anomalia", ["DEFAULT", sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
 
 def popAnomaliaTrad(identifier, box, l2, fds):
-    insertTable("anomalia_traducao", [sqlString(sqlBox(box)), sqlString(l2)], fds)
+    insertTable("anomalia_traducao", [str(identifier), sqlString(sqlBox(box)), sqlString(l2)], fds)
 
 def popPropCorrecao(email, nro, timestamp, desc, fds):
     insertTable("proposta_de_correcao", [email, nro, timestamp, desc], fds)
@@ -92,7 +92,7 @@ def main():
                 languages.append(data[1])
 
         with open("descriptions.txt" , 'r') as descriptions:
-            counter = 0
+            counter = 1
             for desc in descriptions:
                 lingua_1 = random.choice(languages)
                 popAnomalia(str(counter), ((10, 10), (20, 20)), "", lingua_1,desc[:-1], "TRUE", sqlFile)
