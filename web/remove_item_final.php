@@ -1,13 +1,13 @@
 <html>
       <head>
-            <title>Remover anomalia</title>
+            <title>Remover item</title>
             <link rel="stylesheet" href="item.css">
       </head>
       <body>
       <?php
             $caught = false;
             try {
-                  $id = $_REQUEST['id_anomalia'];
+                  $id = $_REQUEST['id_item'];
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -31,9 +31,9 @@
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             if(!$caught){
-                  echo("<h1>Removida anomalia com sucesso!</h1>");
+                  echo("<h1>Removida item com sucesso!</h1>");
             }else{
-                  echo("<h1>A remoção da anomalia falhou.</h1>");
+                  echo("<h1>A remoção do item falhou.</h1>");
             }
       ?>
        <div>

@@ -1,16 +1,16 @@
 <html>
     <head>
-        <title>Remover anomalia</title>
+        <title>Remover item</title>
         <link rel="stylesheet" href="users.css">
         <!--usa-se este por ser igual-->
     </head>
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
-        <h1>Insira o id da anomalia para remover:</h1>
+        <h1>Insira o id do item para remover:</h1>
         <table id="item_information">
             <tr>
                 <th>ID</th>
-                <th>Zona</th>           
+                <th>Localização</th>           
                 <th>Descrição</th>
             </tr>
         <?php
@@ -23,7 +23,7 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-            $sql = "SELECT id, zona, descricao FROM anomalia;";
+            $sql = "SELECT id, localizacao, descricao FROM item;";
 
             $result = $db->prepare($sql);
 
@@ -32,7 +32,7 @@
             foreach($result as $row){
                 echo("<tr>\n");
                 echo("<td>{$row['id']}</td>\n");
-                echo("<td>{$row['zona']}</td>\n");
+                echo("<td>{$row['localizacao']}</td>\n");
                 echo("<td>{$row['descricao']}</td>\n");
                 echo("<tr>\n");
             }
@@ -40,9 +40,9 @@
         ?>
         </table>
         <div>
-            <form id="form_remove_anomaly" action="remove_anomaly_final.php" method="post">
+            <form id="form_remove_item" action="remove_item_final.php" method="post">
                 <h3>ID:</h3>
-                <input name='id_anomalia' type='text'>
+                <input name='id_item' type='text'>
                 <div>
                     <button onclick="location.href='main.html'" type="button">Cancelar</button>
                     <input type="submit" value="Submeter">

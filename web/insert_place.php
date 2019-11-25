@@ -1,6 +1,6 @@
 <html>
       <head>
-            <title>Local Inserido</title>
+            <title>Inserir local</title>
             <link rel="stylesheet" href="place.css">
       </head>
       <body>

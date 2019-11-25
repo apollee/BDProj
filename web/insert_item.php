@@ -1,6 +1,6 @@
 <html>
       <head>
-            <title>Item Inserido</title>
+            <title>Inserir item</title>
             <link rel="stylesheet" href="item.css">
       </head>
       <body>

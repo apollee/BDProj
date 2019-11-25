@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Inserir Anomalia</title>
+        <title>Inserir anomalia</title>
         <link rel="stylesheet" href="anomaly.css">
     </head>
     <body>

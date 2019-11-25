@@ -1,6 +1,6 @@
 <html>
       <head>
-            <title>Anomalia Inserida</title>
+            <title>Inserir anomalia</title>
             <link rel="stylesheet" href="anomaly.css">
       </head>
       <body>
