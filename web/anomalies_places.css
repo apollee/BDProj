@@ -73,3 +73,12 @@ form {
 div {
     margin-top: 1%;
 }
+
+select {
+    border: 2px solid white;
+    color: white;
+    background-color: rgb(1, 119, 148);
+    margin: 2px 20px;
+    border-radius: 4px;
+    font-size: 20px;
+}

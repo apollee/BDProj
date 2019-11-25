@@ -2,12 +2,12 @@
 <html>
     <head>
         <title>Listar anomalias</title>
-        <link rel="stylesheet" href="anomalies_degrees.css">
+        <link rel="stylesheet" href="anomalies_places.css">
     </head>
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Insira os dois locais públicos:</h1>
-        <form id="form_insert_places">
+        <form id="form_insert_places" action="degrees_final.php" method="post">
             <h3>Local 1</h3>
             <input type="text" name="local1"></input><br>
             <h3>Local 2</h3>

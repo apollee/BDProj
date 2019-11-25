@@ -1,13 +1,14 @@
 <html>
       <head>
-            <title>Remover item</title>
+            <title>Registar duplicados</title>
             <link rel="stylesheet" href="item.css">
       </head>
       <body>
       <?php
             $caught = false;
             try {
-                  $id = $_REQUEST['id_item'];
+                  $item1 = $_REQUEST['item1'];
+                  $item2 = $_REQUEST['item2'];
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -18,11 +19,11 @@
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                   
-                  $sql = "DELETE FROM item WHERE id = $id;";
+                  $sql = "INSERT into duplicado (item1, item2) values (?, ?);";
 
                   $result = $db->prepare($sql);
 
-                  $result->execute();
+                  $result->execute([$item1, $item2]);
 
                   $db = null;
             }
@@ -31,9 +32,9 @@
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             if(!$caught){
-                  echo("<h1>Removida item com sucesso!</h1>");
+                  echo("<h1>Registados duplicados com sucesso!</h1>");
             }else{
-                  echo("<h1>A remoção do item falhou.</h1>");
+                  echo("<h1>O registo dos duplicados falhou.</h1>");
             }
       ?>
        <div>
