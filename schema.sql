@@ -26,10 +26,10 @@ create table local_publico (
 );
 
 create table item (
-	id integer,
-	descricao varchar(1024),
+	id SERIAL,
+       	descricao varchar(1024),
 	localizacao varchar(31),
-	latitude integer,
+       	latitude integer,
 	longitude integer,
 	primary key (id),
 	foreign key (latitude, longitude)
@@ -37,7 +37,7 @@ create table item (
 );
 
 create table anomalia (
-	id integer,
+	id SERIAL,
 	zona box,
 	imagem bytea,
 	lingua varchar(40),
@@ -47,7 +47,7 @@ create table anomalia (
 );
 
 create table anomalia_traducao (
-	id integer,
+	id SERIAL,
 	zona2 box,
 	lingua2 varchar(40),
 	primary key (id),
@@ -62,7 +62,8 @@ create table duplicado (
 	foreign key (item1)
 		references item,
 	foreign key (item2)
-		references item
+		references item,
+	check(item1 < item2)
 );
 
 create table utilizador (
