@@ -41,8 +41,14 @@
             ?>
         </table>
         <div>
-            <button onclick="location.href='main.html'" type="button">Cancelar</button>
-            <input type="submit" value="Submeter">
+            <form id="form_remove_place" action="remove_place_final.php" method="post">
+                <h2>Latitude:</h2>
+                <input name='latitude_local' type='text'>
+                <h2>Longitude:</h2>
+                <input name='longitude_local' type="text">
+                <button onclick="location.href='main.html'" type="button">Cancelar</button>
+                <input type="submit" value="Submeter">
+            </form>
         </div>
     </body>
 </html>

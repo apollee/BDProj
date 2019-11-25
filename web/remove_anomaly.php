@@ -40,12 +40,12 @@
         ?>
         </table>
         <div>
-            <h2>ID:</h2>
-            <input type='text'>
-        </div>
-        <div>
-            <button onclick="location.href='main.html'" type="button">Cancelar</button>
-            <input type="submit" value="Submeter">
+            <form id="form_remove_anomaly" action="remove_anomaly_final.php" method="post">
+                <h2>ID:</h2>
+                <input name='id_anomalia' type='text'>
+                <button onclick="location.href='main.html'" type="button">Cancelar</button>
+                <input type="submit" value="Submeter">
+            </form>
         </div>
     </body>
 </html>

@@ -17,7 +17,7 @@
             <h3>Descrição</h3>
             <textarea name="descricao_anomalia" id="description"></textarea></input><br>
             <h3>Tem anomalia de redação</h3>
-            <input type="checkbox" name="tem_anomalia_redacao" value="yes"></input><br>
+            <input type="checkbox" name="tem_anomalia_redacao" value=false></input><br>
             <h3>Foto</h3>
             <label class="input_file">
                     <input type="file" name="foto_anomalia"/>
