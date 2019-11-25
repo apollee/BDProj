@@ -24,15 +24,15 @@ def popLocalPublico(lat, longi, name, fds):
 
 
 def popItem(identifier, desc, loc, lat, longi, fds):
-    insertTable("item", [str(identifier), desc, loc, lat, longi], fds)
+    insertTable("item", [desc, loc, lat, longi], fds)
     if (identifier % 5) == 0:
-        insertTable("duplicado", [str(identifier), str(random.randint(1, identifier - 1))], fds)
+        insertTable("duplicado", [str(random.randint(1, identifier - 1))], fds)
 
 def popAnomalia(identifier, box, bytea , lingua, desc, tem_anom_red, fds):
-    insertTable("anomalia", [identifier, sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
+    insertTable("anomalia", [sqlString(sqlBox(box)), sqlString("PLACEHOlDER FOR BYTEA"), sqlString(lingua), sqlString(desc), tem_anom_red], fds)
 
 def popAnomaliaTrad(identifier, box, l2, fds):
-    insertTable("anomalia_traducao", [identifier, sqlString(sqlBox(box)), sqlString(l2)], fds)
+    insertTable("anomalia_traducao", [sqlString(sqlBox(box)), sqlString(l2)], fds)
 
 def popPropCorrecao(email, nro, timestamp, desc, fds):
     insertTable("proposta_de_correcao", [email, nro, timestamp, desc], fds)
