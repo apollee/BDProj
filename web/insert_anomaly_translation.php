@@ -8,15 +8,12 @@
             $caught = false;
             try {
                   $zona = $_REQUEST['zona_anomalia'];
+                  $zona2 = $_REQUEST['zona_anomalia2'];
                   $lingua = $_REQUEST['lingua_anomalia'];
+                  $lingua2 = $_REQUEST['lingua_anomalia2'];
                   $ts = $_REQUEST['time_stamp_anomalia'];
                   $descricao = $_REQUEST['descricao_anomalia'];
-                  $anomalia_redacao = $_REQUEST['tem_anomalia_redacao'];
                   $imagem = $_REQUEST['foto_anomalia'];
-
-                  if($anomalia_redacao != false){
-                        $anomalia_redacao = true;
-                  }
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -27,11 +24,18 @@
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                   
-                  $sql = "INSERT into anomalia (id, zona, imagem, ts, lingua, descricao, tem_anomalia_redacao) values (default ,?, ?, ?, ?, ?, ?);";
+                  $sql = "INSERT into anomalia (id, zona, imagem, ts, lingua, descricao, tem_anomalia_redacao) values (default ,?, ?, ?, ?, ?, false);";
 
                   $result = $db->prepare($sql);
+                  
+                  $result->execute([$zona, $imagem, $ts, $lingua, $descricao]);
+                  $id = $db->lastInsertId();
 
-                  $result->execute([$zona, $imagem, $ts, $lingua, $descricao, $anomalia_redacao]);
+                  $sql = "INSERT into anomalia_traducao(id, zona2, lingua2) values ($id , ?, ?);";
+                  
+                  $result = $db->prepare($sql);
+
+                  $result->execute([$zona2, $lingua2]);
 
                   $db = null;
             }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Inserir anomalia</title>
+        <title>Inserir anomalia de redação</title>
         <link rel="stylesheet" href="anomaly.css">
     </head>
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
-        <h1>Inserir anomalia:</h1>
-        <form id="form_insert_anomaly" action="insert_anomaly.php" method="post">
+        <h1>Inserir anomalia de redação:</h1>
+        <form id="form_insert_anomaly" action="insert_anomaly_redaction.php" method="post">
             <h3>Zona</h3>
             <input type="text" name="zona_anomalia"></input><br>
             <h3>Língua</h3>
@@ -16,8 +16,6 @@
             <input type="datetime-local" name="time_stamp_anomalia"></input><br>
             <h3>Descrição</h3>
             <textarea name="descricao_anomalia" id="description"></textarea></input><br>
-            <h3>Tem anomalia de redação</h3>
-            <input type="checkbox" name="tem_anomalia_redacao" value=false></input><br>
             <h3>Foto</h3>
             <label class="input_file">
                     <input type="file" name="foto_anomalia"/>

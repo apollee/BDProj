@@ -1,3 +1,5 @@
+/*Qual o local público onde estão registadas mais anomalias?*/
+
 with count_places as(
     select local.nome, count(local.nome)
     from local_publico as local, item as it, anomalia as anom, incidencia as inc
