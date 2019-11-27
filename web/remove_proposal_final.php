@@ -18,12 +18,19 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
                   
                   $sql = "DELETE FROM proposta_de_correcao WHERE email = ? and nro = ?;";
 
                   $result = $db->prepare($sql);
 
                   $result->execute([$email, $nro]);
+
+                  if($result->rowCount() == 0){
+                    $caught = true;
+                  }
+
+                  $db->commit();
 
                   $db = null;
             }

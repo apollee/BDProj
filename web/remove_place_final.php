@@ -17,7 +17,6 @@
 
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
                   
                   $sql = "DELETE FROM local_publico WHERE latitude = $latitude and longitude = $longitude;";
 
@@ -25,9 +24,12 @@
 
                   $result->execute();
 
+                  if($result->rowCount() == 0){
+                        $caught = true;
+                  }
+
                   $db = null;
 
-                  /*falta ver se aquela latitude e longitude nao podem ser*/
             }
             catch (PDOException $e){
                   $caught = true;

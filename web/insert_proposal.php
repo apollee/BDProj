@@ -19,6 +19,8 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
+
                   $nro = /*e preciso fazer isto*/
 
                   $data_hora = new DateTime();
@@ -32,6 +34,8 @@
 
                   $result = $db->prepare($sql);
                   $result->execute([$email, $nro, $anomalia_id]);
+
+                  $db->commit();
 
                   $db = null;
             }

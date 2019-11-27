@@ -17,8 +17,8 @@ DROP TABLE IF EXISTS local_publico;
 
 
 create table local_publico (
-	latitude integer,
-	longitude integer,
+	latitude float,
+	longitude float,
 	nome varchar(100),
 	primary key (latitude, longitude),
 	check(-90 <= latitude and latitude <= 90),
@@ -29,11 +29,13 @@ create table item (
 	id SERIAL,
     descricao varchar(1024),
 	localizacao varchar(31),
-    latitude integer,
-	longitude integer,
+    latitude float,
+	longitude float,
 	primary key (id),
 	foreign key (latitude, longitude)
-		references local_publico(latitude, longitude) ON DELETE CASCADE
+		references local_publico(latitude, longitude) ON DELETE CASCADE,
+	check(-90 <= latitude and latitude <= 90),
+	check(-180 <= longitude and longitude <= 180)
 );
 
 create table anomalia (
@@ -61,7 +63,7 @@ create table duplicado (
 	item2 integer,
 	primary key(item1, item2),
 	foreign key (item1)
-		references item,
+		references item ON DELETE CASCADE,
 	foreign key (item2)
 		references item ON DELETE CASCADE,
 	check(item1 < item2)
@@ -93,9 +95,9 @@ create table incidencia (
 	email varchar(50),
 	primary key (anomalia_id),
 	foreign key (anomalia_id)
-		references anomalia,
+		references anomalia ON DELETE CASCADE, 
 	foreign key (item_id)
-		references item,
+		references item ON DELETE CASCADE,
 	foreign key (email)
 		references utilizador ON DELETE CASCADE
 );
@@ -116,7 +118,7 @@ create table correcao (
 	anomalia_id integer,
 	primary key (email, nro, anomalia_id),
 	foreign key (email, nro)
-		references proposta_de_correcao(email, nro),
+		references proposta_de_correcao(email, nro) ON DELETE CASCADE,
 	foreign key (anomalia_id)
 		references incidencia ON DELETE CASCADE
 );

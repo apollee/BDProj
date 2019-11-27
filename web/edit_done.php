@@ -27,7 +27,9 @@
 
                   $result->execute([$texto, $email, $nro]);
 
-                  /*falta ver se aquele email e nro nao podem ser*/
+                  if($result->rowCount() == 0){
+                        $caught = true;
+                  }
 
                   $db = null;
             }
