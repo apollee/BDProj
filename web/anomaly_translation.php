@@ -16,8 +16,6 @@
             <input type="text" name="lingua_anomalia"></input><br>
             <h3>Língua2</h3>
             <input type="text" name="lingua_anomalia2"></input><br>
-            <h3>Time stamp</h3>
-            <input type="datetime-local" name="time_stamp_anomalia"></input><br>
             <h3>Descrição</h3>
             <textarea name="descricao_anomalia" id="description"></textarea></input><br>
             <h3>Foto</h3>

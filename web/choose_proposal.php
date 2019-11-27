@@ -10,6 +10,7 @@
             <tr>
                 <th>Email</th>
                 <th>Nro</th>
+                <th>Texto</th>
             </tr>
             <?php
                 session_start();
@@ -21,7 +22,7 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "SELECT email, nro FROM proposta_de_correcao;";
+                $sql = "SELECT email, nro, texto FROM proposta_de_correcao;";
 
                 $result = $db->prepare($sql);
 
@@ -31,6 +32,7 @@
                     echo("<tr>\n");
                     echo("<td>{$row['email']}</td>\n");
                     echo("<td>{$row['nro']}</td>\n");
+                    echo("<td>{$row['texto']}</td>\n");
                     echo("<tr>\n");
                 }
                 echo("</select>");

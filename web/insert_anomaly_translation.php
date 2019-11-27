@@ -11,7 +11,6 @@
                   $zona2 = $_REQUEST['zona_anomalia2'];
                   $lingua = $_REQUEST['lingua_anomalia'];
                   $lingua2 = $_REQUEST['lingua_anomalia2'];
-                  $ts = $_REQUEST['time_stamp_anomalia'];
                   $descricao = $_REQUEST['descricao_anomalia'];
                   $imagem = $_REQUEST['foto_anomalia'];
 
@@ -23,12 +22,13 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                  
+                  $data_hora = new DateTime();
+                  $data_final = $data_hora->format('Y-m-d H:i:s');
                   $sql = "INSERT into anomalia (id, zona, imagem, ts, lingua, descricao, tem_anomalia_redacao) values (default ,?, ?, ?, ?, ?, false);";
 
                   $result = $db->prepare($sql);
                   
-                  $result->execute([$zona, $imagem, $ts, $lingua, $descricao]);
+                  $result->execute([$zona, $imagem, $data_final, $lingua, $descricao]);
                   $id = $db->lastInsertId();
 
                   $sql = "INSERT into anomalia_traducao(id, zona2, lingua2) values ($id , ?, ?);";

@@ -7,7 +7,7 @@
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Insira a latitude e a longitude dos locais:</h1>
-        <form id="form_insert_places" action="degrees_final.php" method="post">
+        <form id="form_insert_places" action="places_final.php" method="post">
         <table id="place_information">
             <tr>
                 <th>Latitude</th>

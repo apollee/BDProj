@@ -8,39 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Insira o max e o min da latitude e longitude dos locais:</h1>
         <form id="form_insert_places" action="degrees_final.php" method="post">
-        <table id="place_information">
-            <tr>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Nome</th>
-            </tr>
         
-            <?php
-                $host = "db.ist.utl.pt";
-                $user = "ist190334";
-                $password = "123456789";
-                $dbname = $user;
-
-                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-                $sql = "SELECT latitude, longitude, nome FROM local_publico;";
-
-                $result = $db->prepare($sql);
-
-                $result->execute();
-
-                foreach($result as $row){
-                    echo("<tr>\n");
-                    echo("<td>{$row['latitude']}</td>\n");
-                    echo("<td>{$row['longitude']}</td>\n");
-                    echo("<td>{$row['nome']}</td>\n");
-                    echo("<tr>\n");
-                }
-
-            ?>
-        </table>
         <h3>Min latitude</h3>
         <input style="margin-right: 1%" type="text" name="min_latitude"></input>
         <h3>Max latitude</h3>

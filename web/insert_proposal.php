@@ -25,8 +25,8 @@
 
                   $result1 = $db->prepare($sql);
                   $result1->execute([$email]);
-                  $nro = (int) $result1->fetch(PDO::FETCH_ASSOC) + 1;
-                  echo $nro;
+                  $nro = $result1->fetch(PDO::FETCH_ASSOC);
+                  $nro = $nro[count] + 1;
 
                   $data_hora = new DateTime();
                   $data_final = $data_hora->format('Y-m-d H:i:s');
