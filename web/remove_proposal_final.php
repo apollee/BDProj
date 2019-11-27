@@ -1,14 +1,14 @@
 <html>
       <head>
-            <title>Remover local</title>
+            <title>Remover proposta</title>
             <link rel="stylesheet" href="item.css">
       </head>
       <body>
       <?php
-            $caugh = false;
+            $caught = false;
             try {
-                  $latitude = $_REQUEST['latitude_local'];
-                  $longitude = $_REQUEST['longitude_local'];
+                  $email = $_REQUEST['email'];
+                  $nro = $_REQUEST['nro'];
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -19,27 +19,25 @@
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                   
-                  $sql = "DELETE FROM local_publico WHERE latitude = $latitude and longitude = $longitude;";
+                  $sql = "DELETE FROM proposta_de_correcao WHERE email = ? and nro = ?;";
 
                   $result = $db->prepare($sql);
 
-                  $result->execute();
+                  $result->execute([$email, $nro]);
 
                   $db = null;
-
-                  /*falta ver se aquela latitude e longitude nao podem ser*/
             }
             catch (PDOException $e){
                   $caught = true;
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             if(!$caught){
-                  echo("<h1>Removido local com sucesso!</h1>");
+                  echo("<h1>Removida proposta com sucesso!</h1>");
             }else{
-                  echo("<h1>A remoção do local falhou.</h1>");
+                  echo("<h1>A remoção da proposta falhou.</h1>");
             }
       ?>
-      <div>
+       <div>
             <button onclick="location.href='main.html'" type="button">Home</button>
       </div>
       </body>

@@ -1,14 +1,16 @@
 <html>
       <head>
-            <title>Remover local</title>
+            <title>Editar proposta</title>
             <link rel="stylesheet" href="item.css">
       </head>
       <body>
       <?php
-            $caugh = false;
+            $caught = false;
             try {
-                  $latitude = $_REQUEST['latitude_local'];
-                  $longitude = $_REQUEST['longitude_local'];
+                  session_start();
+                  $email = $_SESSION['email'];
+                  $nro = $_SESSION['nro'];
+                  $texto = $_REQUEST['text'];
 
                   $host = "db.ist.utl.pt";
                   $user = "ist190334";
@@ -19,24 +21,24 @@
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                   
-                  $sql = "DELETE FROM local_publico WHERE latitude = $latitude and longitude = $longitude;";
+                  $sql = "UPDATE proposta_de_correcao SET texto = ? WHERE email = ? and nro = ?;";
 
                   $result = $db->prepare($sql);
 
-                  $result->execute();
+                  $result->execute([$texto, $email, $nro]);
+
+                  /*falta ver se aquele email e nro nao podem ser*/
 
                   $db = null;
-
-                  /*falta ver se aquela latitude e longitude nao podem ser*/
             }
             catch (PDOException $e){
                   $caught = true;
                   echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             if(!$caught){
-                  echo("<h1>Removido local com sucesso!</h1>");
+                  echo("<h1>Edição feita com sucesso!</h1>");
             }else{
-                  echo("<h1>A remoção do local falhou.</h1>");
+                  echo("<h1>A edição da proposta falhou.</h1>");
             }
       ?>
       <div>
