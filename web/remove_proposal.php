@@ -38,7 +38,6 @@
                 $result = $db->prepare($sql);
 
                 $result->execute();
-
             ?>
         </table>
         <div>

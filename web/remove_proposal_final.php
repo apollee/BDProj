@@ -37,6 +37,7 @@
             catch (PDOException $e){
                   $caught = true;
                   echo("<p>ERROR: {$e->getMessage()}</p>");
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Removida proposta com sucesso!</h1>");
