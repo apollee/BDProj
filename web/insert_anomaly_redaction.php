@@ -9,7 +9,6 @@
             try {
                   $zona = $_REQUEST['zona_anomalia'];
                   $lingua = $_REQUEST['lingua_anomalia'];
-                  $ts = $_REQUEST['time_stamp_anomalia'];
                   $descricao = $_REQUEST['descricao_anomalia'];
                   $imagem = $_REQUEST['foto_anomalia'];
 
@@ -20,13 +19,14 @@
 
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+                  $data_hora = new DateTime();
+                  $data_final = $data_hora->format('Y-m-d H:i:s');
                   
                   $sql = "INSERT into anomalia (id, zona, imagem, ts, lingua, descricao, tem_anomalia_redacao) values (default ,?, ?, ?, ?, ?, true);";
 
                   $result = $db->prepare($sql);
 
-                  $result->execute([$zona, $imagem, $ts, $lingua, $descricao]);
+                  $result->execute([$zona, $imagem, $data_final, $lingua, $descricao]);
 
                   $db = null;
             }

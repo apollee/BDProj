@@ -39,6 +39,7 @@
             }
             catch (PDOExeception $e){
                 echo("<p>ERROR: {$e->getMessage()}</p>");
+                $db->rollBack();
             }
         ?>
         </table>

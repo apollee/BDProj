@@ -24,6 +24,10 @@
 
                   $result->execute();
 
+                  if($result->rowCount() == 0){
+                        $caught = true;
+                  }
+                  
                   $db = null;
             }
             catch (PDOException $e){

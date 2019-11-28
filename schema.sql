@@ -118,7 +118,9 @@ create table correcao (
 	anomalia_id integer,
 	primary key (email, nro, anomalia_id),
 	foreign key (email, nro)
-		references proposta_de_correcao(email, nro) ON DELETE CASCADE,
+		references proposta_de_correcao(email, nro)
+		ON DELETE CASCADE,
+		-- ON UPDATE CASCADE,
 	foreign key (anomalia_id)
 		references incidencia ON DELETE CASCADE
 );

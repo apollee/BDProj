@@ -6,16 +6,54 @@
     </head>
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
-        <h1>Insira os dois locais públicos:</h1>
-        <form id="form_insert_places" action="degrees_final.php" method="post">
-            <h3>Local 1</h3>
-            <input type="text" name="local1"></input><br>
-            <h3>Local 2</h3>
-            <input type="text" name="local2"></input><br>
-            <div>
-                <button onclick="location.href='main.html'" type="button">Cancelar</button>
-                <input type="submit" value="Submeter">
-            </div>
+        <h1>Insira a latitude e a longitude dos locais e o dx e o dy:</h1>
+        <form id="form_insert_places" action="places_final.php" method="post">
+        <table id="place_information">
+            <tr>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Nome</th>
+            </tr>
+        
+            <?php
+                $host = "db.ist.utl.pt";
+                $user = "ist190334";
+                $password = "123456789";
+                $dbname = $user;
+
+                $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+                $sql = "SELECT latitude, longitude, nome FROM local_publico;";
+
+                $result = $db->prepare($sql);
+
+                $result->execute();
+
+                foreach($result as $row){
+                    echo("<tr>\n");
+                    echo("<td>{$row['latitude']}</td>\n");
+                    echo("<td>{$row['longitude']}</td>\n");
+                    echo("<td>{$row['nome']}</td>\n");
+                    echo("<tr>\n");
+                }
+
+            ?>
+        </table>
+        <h3>Latitude</h3>
+        <input style="margin-right: 1%" type="text" name="latitude"></input>
+        <h3>Longitude</h3>
+        <input type="text" name="longitude"></input><br>
+        <h3>Dx</h3>
+        <input style="margin-right: 1%" type="text" name="dx"></input>
+        <h3>Dy</h3>
+        <input type="text" name="dy"></input>
+
+        <div>
+            <button onclick="location.href='main.html'" type="button">Cancelar</button>
+            <input type="submit" value="Submeter">
+        </div>
         </form>
     </body>
 </html>

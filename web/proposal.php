@@ -17,7 +17,7 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "SELECT id FROM anomalia;";
+                $sql = "SELECT a.id FROM anomalia as a, incidencia as i where a.id = i.anomalia_id ORDER BY a.id;";
 
                 $result = $db->prepare($sql);
 
