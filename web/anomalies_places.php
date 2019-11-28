@@ -6,7 +6,7 @@
     </head>
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
-        <h1>Insira a latitude e a longitude dos locais:</h1>
+        <h1>Insira a latitude e a longitude dos locais e o dx e o dy:</h1>
         <form id="form_insert_places" action="places_final.php" method="post">
         <table id="place_information">
             <tr>
@@ -41,14 +41,14 @@
 
             ?>
         </table>
-        <h3>Latitude local 1</h3>
-        <input style="margin-right: 1%" type="text" name="latitude1"></input>
-        <h3>Longitude local 1</h3>
-        <input type="text" name="longitude1"></input><br>
-        <h3>Latitude local 2</h3>
-        <input style="margin-right: 1%" type="text" name="latitude2"></input>
-        <h3>Longitude local 2</h3>
-        <input type="text" name="longitude2"></input>
+        <h3>Latitude</h3>
+        <input style="margin-right: 1%" type="text" name="latitude"></input>
+        <h3>Longitude</h3>
+        <input type="text" name="longitude"></input><br>
+        <h3>Dx</h3>
+        <input style="margin-right: 1%" type="text" name="dx"></input>
+        <h3>Dy</h3>
+        <input type="text" name="dy"></input>
 
         <div>
             <button onclick="location.href='main.html'" type="button">Cancelar</button>

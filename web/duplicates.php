@@ -21,26 +21,26 @@
 
             $sql = "SELECT id FROM item;";
 
-        $result = $db->prepare($sql);
+            $result = $db->prepare($sql);
 
-        $result->execute();
+            $result->execute();
 
-        echo("<select  name='item1'>");
-        foreach($result as $row){
-            echo("<option value='{$row['id']}'>{$row['id']}</option>");
-        }
-        echo("</select>");
+            echo("<select  name='item1'>");
+            foreach($result as $row){
+                echo("<option value='{$row['id']}'>{$row['id']}</option>");
+            }
+            echo("</select>");
 
-        $result = $db->prepare($sql);
+            $result = $db->prepare($sql);
 
-        $result->execute();
+            $result->execute();
 
-        echo("<h3>Item 2</h3>");
-        echo("<select name='item2'>");
-        foreach($result as $row){
-            echo("<option value='{$row['id']}'>{$row['id']}</option>");
-        }
-        echo("</select>");
+            echo("<h3>Item 2</h3>");
+            echo("<select name='item2'>");
+            foreach($result as $row){
+                echo("<option value='{$row['id']}'>{$row['id']}</option>");
+            }
+            echo("</select>");
         ?>
         <div style="margin-top: 5%">
             <button onclick="location.href='main.html'" type="button">Cancelar</button>
