@@ -65,7 +65,10 @@ def main():
             data = line.split()
             lat = data[1]
             longi = data[2]
-            name = sqlString(data[3])
+            if len(data) == 4:
+                name = sqlString(data[3])
+            else:
+                name = sqlString(data[3] + " " + data [4])
             popLocalPublico(lat, longi, name , sqlFile)
             if(counter % random.randint(1,3) == 0):
                 popItem(counter, sqlString(str(linecache.getline('descriptions.txt', counter))[:-1]), name, lat, longi, sqlFile)

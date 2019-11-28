@@ -72,7 +72,7 @@ create table duplicado (
 create table utilizador (
 	email varchar(50),
 	password varchar(30),
-	primary key (email) 
+	primary key (email)
 );
 
 create table utilizador_qualificado (
@@ -95,7 +95,7 @@ create table incidencia (
 	email varchar(50),
 	primary key (anomalia_id),
 	foreign key (anomalia_id)
-		references anomalia ON DELETE CASCADE, 
+		references anomalia ON DELETE CASCADE,
 	foreign key (item_id)
 		references item ON DELETE CASCADE,
 	foreign key (email)
