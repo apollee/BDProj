@@ -2,7 +2,6 @@
     <head>
         <title>Remover item</title>
         <link rel="stylesheet" href="users.css">
-        <!--usa-se este por ser igual-->
     </head>
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
@@ -24,9 +23,8 @@
 
 
             $sql = "SELECT id, localizacao, descricao FROM item;";
-
+            
             $result = $db->prepare($sql);
-
             $result->execute();
 
             foreach($result as $row){

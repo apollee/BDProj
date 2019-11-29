@@ -5,10 +5,6 @@
     </head>
     <body>
     <h1>Listagem:</h1>
-    <table>
-        <tr>
-            <th>Id de anomalia</th>
-        </tr>
         <?php
                 $caught = false;
                 try {   
@@ -36,26 +32,32 @@
 
                         $result->execute();
 
-                        foreach($result as $row){
+                        if($result->rowCount() == 0){
+                                $caught = true;
+                        }else{
+                                echo("<table>\n");
                                 echo("<tr>\n");
-                                echo("<td>{$row['id']}</td>\n");
-                                echo("<tr>\n");
+                                echo("<th>Id de anomalia</th>");
+                                echo("</tr>\n");
+                                foreach($result as $row){
+                                        echo("<tr>\n");
+                                        echo("<td>{$row['id']}</td>\n");
+                                        echo("</tr>\n");
+                                }
+                                echo("</table>");
                         }
-                        echo("</table>");
-
 
                         $db = null;
                 }
                 catch (PDOException $e){
                         $caught = true;
-                        echo("<p>ERROR: {$e->getMessage()}</p>");
                 }
                 if($caught){
-                        echo("<h1>Falha na listagem.</h1>");
+                        echo("<h1>Falha na listagem ou listagem nula.</h1>");
                 }
       ?>
        <div>
-            <button onclick="location.href='main.html'" type="button">Home</button>
+            <button onclick="location.href='main.html'" type="button" id="home">Home</button>
       </div>
     </body>
 </html>

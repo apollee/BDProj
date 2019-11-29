@@ -17,6 +17,7 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
                   
                   $sql = "DELETE FROM item WHERE id = $id;";
 
@@ -28,11 +29,13 @@
                         $caught = true;
                   }
                   
+                  $db->commit();
+
                   $db = null;
             }
             catch (PDOException $e){
                   $caught = true;
-                  echo("<p>ERROR: {$e->getMessage()}</p>");
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Removida item com sucesso!</h1>");
@@ -41,7 +44,7 @@
             }
       ?>
        <div>
-            <button onclick="location.href='main.html'" type="button">Home</button>
+            <button onclick="location.href='main.html'" type="button" id="home">Home</button>
       </div>
       </body>
 </html>

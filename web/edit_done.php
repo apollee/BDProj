@@ -24,7 +24,6 @@
                   $sql = "UPDATE proposta_de_correcao SET texto = ? WHERE email = ? and nro = ?;";
 
                   $result = $db->prepare($sql);
-
                   $result->execute([$texto, $email, $nro]);
 
                   if($result->rowCount() == 0){
@@ -35,7 +34,6 @@
             }
             catch (PDOException $e){
                   $caught = true;
-                  echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             if(!$caught){
                   echo("<h1>Edição feita com sucesso!</h1>");
@@ -44,7 +42,7 @@
             }
       ?>
       <div>
-            <button onclick="location.href='main.html'" type="button">Home</button>
+            <button onclick="location.href='main.html'" type="button" id="home">Home</button>
       </div>
       </body>
 </html>

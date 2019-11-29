@@ -38,13 +38,12 @@
                 $db = null;
             }
             catch (PDOExeception $e){
-                echo("<p>ERROR: {$e->getMessage()}</p>");
-                $db->rollBack();
+                echo("<h1>A listagem de utilizadores falhou.</h1>");
             }
         ?>
         </table>
         <div>
-        <button onclick="location.href='main.html'" type="button">Home</button>
+        <button onclick="location.href='main.html'" type="button" id="home">Home</button>
         </div>
     </body>
 </html>

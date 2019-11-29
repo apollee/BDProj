@@ -32,7 +32,6 @@
             }
             catch (PDOException $e){
                   $caught = true;
-                  echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             if(!$caught){
                   echo("<h1>Inserida anomalia com sucesso!</h1>");
@@ -41,7 +40,7 @@
             }
       ?>
       <div>
-            <button onclick="location.href='main.html'" type="button">Home</button>
+            <button onclick="location.href='main.html'" type="button" id="home">Home</button>
       </div>
       </body>
 </html>
