@@ -19,6 +19,7 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
                   
                   $sql = "INSERT into incidencia (anomalia_id, item_id, email) values (?, ?, ?);";
 
@@ -26,10 +27,13 @@
 
                   $result->execute([$id_anomalia, $id_item, $email]);
 
+                  $db->commit();
+
                   $db = null;
             }
             catch (PDOException $e){
                   $caught = true;
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Registada a incidência com sucesso!</h1>");

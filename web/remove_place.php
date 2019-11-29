@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Escolha o local para remover:</h1>
         <table id="place_information">
+            
             <tr>
                 <th>Latitude</th>
                 <th>Longitude</th>

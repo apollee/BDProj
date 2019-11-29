@@ -20,6 +20,7 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
                   
                   $sql = "UPDATE proposta_de_correcao SET texto = ? WHERE email = ? and nro = ?;";
 
@@ -30,10 +31,13 @@
                         $caught = true;
                   }
 
+                  $db->commit();
+
                   $db = null;
             }
             catch (PDOException $e){
                   $caught = true;
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Edição feita com sucesso!</h1>");

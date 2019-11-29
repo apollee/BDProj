@@ -19,6 +19,8 @@
 
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                  $db->beginTransaction();
                   
                   $sql = "INSERT into item (id, localizacao, latitude, longitude, descricao) values ( default, ?, ?, ?, ?);";
 
@@ -26,10 +28,13 @@
 
                   $result->execute([$localizacao, $latitude, $longitude, $descricao]);
 
+                  $db->commit();
+
                   $db = null;
             }
             catch (PDOException $e){
                   $caught = true;
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Inserido item com sucesso!</h1>");

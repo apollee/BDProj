@@ -22,6 +22,8 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
+
                   $data_hora = new DateTime();
                   $data_final = $data_hora->format('Y-m-d H:i:s');
                   $sql = "INSERT into anomalia (id, zona, imagem, ts, lingua, descricao, tem_anomalia_redacao) values (default ,?, ?, ?, ?, ?, false);";
@@ -37,10 +39,13 @@
 
                   $result->execute([$zona2, $lingua2]);
 
+                  $db->commit();
+
                   $db = null;
             }
             catch (PDOException $e){
                   $caught = true;
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Inserida anomalia com sucesso!</h1>");
