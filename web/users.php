@@ -9,7 +9,6 @@
         <table id="">
             <tr>
                 <th>Email</th>
-                <th>Password</th>
             </tr>
         <?php
             try {
@@ -22,7 +21,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-                $sql = "SELECT * FROM utilizador;";
+                $sql = "SELECT email FROM utilizador;";
 
                 $result = $db->prepare($sql);
 
@@ -31,7 +30,6 @@
                 foreach($result as $row){
                     echo("<tr>\n");
                     echo("<td>{$row['email']}</td>\n");
-                    echo("<td>{$row['password']}</td>\n");
                     echo("<tr>\n");
                 }
 

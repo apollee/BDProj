@@ -1,11 +1,7 @@
-/*Qual o utilizador regular que registou mais anomalias de traducao no 1 semestre de 2019?*/
-
 with count_users as(
-    select ureg.email, count(ureg.email)
-    from utilizador_regular as ureg, incidencia as inc, anomalia_traducao as anomtrad, anomalia as anom
-    where ureg.email = inc.email
-    and inc.anomalia_id = anomtrad.id
-    and anom.id = anomtrad.id
+    select  ureg.email, count(ureg.email)
+    from utilizador_regular as ureg natural join incidencia as inc natural join anomalia_traducao as anomtrad natural join anomalia as anom
+    where anom.ts between '2019-01-01 00:00:00' AND '2019-6-30 23:59:59'
     group by ureg.email),
 max_count as (
     select MAX(count)
