@@ -124,3 +124,47 @@ create table correcao (
 		references incidencia ON DELETE CASCADE
 );
 
+
+create trigger zone_trigger after insert on anomalia
+	for each statement execute procedure zone_trigger_proc();
+
+create or replace function zone_trigger_proc() returns trigger
+as $$
+begin 
+	if !new.tem_anomalia_redacao then
+		$aux = select zona2 from anomalia_traducao as anom_t where anom_t.id = new.id; 
+		if new.zona && aux.zona2 then
+			raise exception 'As zonas estao sobrepostas.';
+		end if
+	end if
+end
+$$ language plpgsql;
+
+
+
+create trigger user_qualify before insert on utilizador_qualificado
+	for each statement execute procedure user_qualify_proc();
+
+create or replace user_qualify_proc() returns trigger
+as $$
+begin 
+	$aux = select email from utilizador_regular as ut_r where ut_r.email = new.email;
+	if email != null
+		raise exception 'O user % e regular', new.email;
+	end if
+end
+$$ language plpgsql;
+
+
+create trigger user_regular before insert on utilizador_regular
+	for each statement execute procedure user_regular_proc();
+
+create or replace user_regular_proc() returns trigger
+as $$
+begin 
+	$aux = select email from utilizador_qualificado as ut_q where ut_q.email = new.email;
+	if email != null
+		raise exception 'O user % e qualificado', new.email;
+	end if
+end
+$$ language plpgsql;
