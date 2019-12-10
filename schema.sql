@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS correcao;
 
 DROP TABLE IF EXISTS proposta_de_correcao;
 
-DROP TABLE IF EXISTS incidencia CASCADE;
+DROP TABLE IF EXISTS incidencia;
 
 DROP TABLE IF EXISTS utilizador_qualificado;
 DROP TABLE IF EXISTS utilizador_regular;
@@ -127,18 +127,19 @@ create table correcao (
 
 create or replace function zone_trigger_proc() returns trigger
 as $$
+declare 
+	aux_zona box;
 begin 
-	if new.tem_anomalia_redacao is FALSE then
-		$aux = select zona2 from anomalia_traducao as anom_t where anom_t.id = new.id; 
-		if new.zona && aux.zona2 then
-			raise exception 'As zonas estao sobrepostas.';
-		end if;
+	select zona into aux_zona from anomalia as anom where anom.id = new.id; 
+	if new.zona2 && aux_zona then
+		raise exception 'As zonas estao sobrepostas.';
 	end if;
+	return new;
 end;
 $$ language plpgsql;
 
-create trigger zone_trigger after insert on anomalia
-	for each statement execute procedure zone_trigger_proc();
+create trigger zone_trigger after insert on anomalia_traducao
+	for each row execute procedure zone_trigger_proc();
 
 create or replace function user_qualify_proc() returns trigger
 as $$
@@ -146,7 +147,7 @@ begin
 	if exists(
 		select email from utilizador_regular as ut_r where ut_r.email = new.email)
 	then
-		raise exception 'O utilizador é regular';
+		raise exception 'O utilizador já é regular';
 	end if;
 	return new;
 end;
@@ -161,7 +162,7 @@ begin
 	if exists(
 		select email from utilizador_qualificado as ut_q where ut_q.email = new.email)
 	then
-		raise exception 'O utilizador é qualificado';
+		raise exception 'O utilizador já é qualificado';
 	end if;
 	return new;
 end;
