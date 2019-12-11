@@ -27,9 +27,9 @@ create table local_publico (
 
 create table item (
 	id SERIAL,
-    	descricao varchar(1024) not null,
+    descricao varchar(1024) not null,
 	localizacao varchar(31) not null,
-    	latitude float not null,
+    latitude float not null,
 	longitude float not null,
 	primary key (id),
 	foreign key (latitude, longitude)
