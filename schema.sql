@@ -124,7 +124,6 @@ create table correcao (
 		references incidencia ON DELETE CASCADE
 );
 
-
 create or replace function zone_trigger_proc() returns trigger
 as $$
 declare 
@@ -140,6 +139,17 @@ $$ language plpgsql;
 
 create trigger zone_trigger after insert on anomalia_traducao
 	for each row execute procedure zone_trigger_proc();
+
+create or replace function user_email_proc() returns trigger
+as $$
+begin 
+	
+end;
+$$ language plpgsql;
+
+create trigger user_email after insert on utilizador
+	for each row execute procedure user_email_proc();
+
 
 create or replace function user_qualify_proc() returns trigger
 as $$
@@ -170,3 +180,5 @@ $$ language plpgsql;
 
 create trigger user_regular before insert on utilizador_regular
 	for each row execute procedure user_regular_proc();
+
+

@@ -17,8 +17,12 @@ insert into d_tempo(id_tempo, dia, dia_da_semana, semana, mes, trimestre, ano)
     extract(month from data_hora) as mes,
     extract(quarter from data_hora) as trimestre,
     extract(year from data_hora) as ano
+    from proposta_de_correcao;
 
 insert into fact_table(id_utilizador, id_tempo, id_local, id_lingua, tipo_nomalia, com_proposta)
     select id_utilizador, id_tempo, id_local, id_lingua
     from d_utilizador
-
+    natural join d_tempo
+    natural join d_local
+    natural_join d_lingua
+    
