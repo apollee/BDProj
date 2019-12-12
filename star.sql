@@ -40,7 +40,7 @@ create table fact_table(
     id_tempo integer not null,
     id_local integer not null,
     id_lingua integer not null,
-    tipo_nomalia varchar(150) not null,
+    tipo_nomalia boolean not null,
     com_proposta boolean not null,
     primary key(id_utilizador, id_tempo, id_local, id_lingua),
     foreign key(id_utilizador) references d_utilizador(id_utilizador) ON DELETE CASCADE,
