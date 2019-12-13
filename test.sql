@@ -40,14 +40,13 @@ create table d_tempo(
 );
 
 insert into d_tempo(dia, dia_da_semana, semana, mes, trimestre, ano)
-    select extract(day from data_hora) as dia,
-    extract(dow from data_hora) as dia_da_semana,
-    extract(week from data_hora) as semana,
-    extract(month from data_hora) as mes,
-    extract(quarter from data_hora) as trimestre,
-    extract(year from data_hora) as ano
-    from proposta_de_correcao;
-
+    select distinct extract(day from ts) as dia,
+    extract(dow from ts) as dia_da_semana,
+    extract(week from ts) as semana,
+    extract(month from ts) as mes,
+    extract(quarter from ts) as trimestre,
+    extract(year from ts) as ano
+    from anomalia;
 
 CREATE TABLE d_lingua
 AS
@@ -55,16 +54,20 @@ select distinct lingua
 from anomalia;
 
 ALTER TABLE d_lingua
-ADD COLUMN id_lingua serial not null;
-
+ADD COLUMN id_lingua serial not null; 
 
 CREATE TABLE f_anomalia AS
-select ut.id_utilizador, temp.id_tempo, loc.id_local, ling.id_lingua, anom.tem_anomalia_redacao,
-CASE WHEN anom.id = corre.anomalia_id THEN TRUE ELSE FALSE END as com_proposta
-from d_utilizador as ut,
-	d_tempo as temp,
-	d_lingua as ling,
-	d_local as loc,
-	anomalia as anom,
-	correcao as corre;
+select id_lingua, id_local, id_tempo, id_utilizador, tem_anomalia_redacao,
+case exists(select * from incidencia natural join correcao natural join proposta_de_correcao)
+    when True then True 
+    else False 
+end as com_proposta
+    from incidencia, anomalia, item, d_utilizador, d_tempo, d_local, d_lingua
+    where 
+        extract(year from anomalia.ts) = d_tempo.ano and extract(month from anomalia.ts) = d_tempo.mes
+        and extract(day from anomalia.ts) = d_tempo.dia 
+        and d_lingua.lingua = anomalia.lingua 
+        and incidencia.anomalia_id = anomalia.id and incidencia.item_id = item.id 
+        and d_local.latitude = item.latitude and d_local.longitude = item.longitude
+        and d_utilizador.email = incidencia.email;
 

@@ -142,14 +142,18 @@ create trigger zone_trigger after insert on anomalia_traducao
 
 create or replace function user_email_proc() returns trigger
 as $$
-begin 
-	
+begin
+		if exists(
+					select email from utilizador_regular natural join utilizador_qualificado where email = new.email)
+						then 
+								raise exception 'O email do utilizador não figura em utilizador qualificado ou utilizador regular.';
+									end if;
+										return new;
 end;
 $$ language plpgsql;
 
-create trigger user_email after insert on utilizador
-	for each row execute procedure user_email_proc();
-
+create constraint trigger user_email after insert on utilizador
+	INITIALLY DEFERRED for each row execute procedure user_email_proc();
 
 create or replace function user_qualify_proc() returns trigger
 as $$
