@@ -11,6 +11,6 @@ max_count as (
     select MAX(count)
     from count_users
 )
-select count_u.email 
+select count_u.email
 from count_users as count_u, max_count as max_c
 where max_c.max = count_u.count;
