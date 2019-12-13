@@ -7,7 +7,7 @@
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Inserir anomalia de tradução:</h1>
-        <form id="form_insert_anomaly" action="insert_anomaly_translation.php" method="post">
+        <form id="form_insert_anomaly_t" action="insert_anomaly_translation.php" method="post">
             <h3>Zona</h3>
             <input type="text" name="zona_anomalia"></input><br>
             <h3>Zona2</h3>

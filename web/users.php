@@ -9,7 +9,6 @@
         <table id="">
             <tr>
                 <th>Email</th>
-                <th>Password</th>
             </tr>
         <?php
             try {
@@ -22,7 +21,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-                $sql = "SELECT * FROM utilizador;";
+                $sql = "SELECT email FROM utilizador;";
 
                 $result = $db->prepare($sql);
 
@@ -31,20 +30,18 @@
                 foreach($result as $row){
                     echo("<tr>\n");
                     echo("<td>{$row['email']}</td>\n");
-                    echo("<td>{$row['password']}</td>\n");
                     echo("<tr>\n");
                 }
 
                 $db = null;
             }
             catch (PDOExeception $e){
-                echo("<p>ERROR: {$e->getMessage()}</p>");
-                $db->rollBack();
+                echo("<h1>A listagem de utilizadores falhou.</h1>");
             }
         ?>
         </table>
         <div>
-        <button onclick="location.href='main.html'" type="button">Home</button>
+        <button onclick="location.href='main.html'" type="button" id="home">Home</button>
         </div>
     </body>
 </html>

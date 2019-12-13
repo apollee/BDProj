@@ -25,7 +25,6 @@
                 $sql = "SELECT email, nro, texto FROM proposta_de_correcao;";
 
                 $result = $db->prepare($sql);
-
                 $result->execute();
 
                 foreach($result as $row){
@@ -37,9 +36,8 @@
                 }
                 echo("</select>");
 
-                $result = $db->prepare($sql);
-
-                $result->execute();
+                $db = null;
+                
             ?>
         </table>
         <div>

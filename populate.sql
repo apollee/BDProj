@@ -84,14 +84,14 @@ insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOl
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747689', 'Russian', '",0;Mt~"', TRUE);
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747698', 'Hindi', '"3RE6e=/9L)cR0\8VIpgCYI9j~8=.7OBOj *TeC_{ndc]Ht{,0pes;z|f[vuP0`"', TRUE);
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747707', 'English', 'asdZ}HAW)U u7z-l', TRUE);
-insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747716', 'Russian', 'Jr77mVP?<9U<TnAcXt;K.K1~A', TRUE);
+insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747716', 'Russian', 'Jr77mVP?<9U<TnAcXt;K.K1~A', FALSE);
 insert into anomalia_traducao values (6, '( ( 20 , 20 ) , ( 30 , 30 ) )', 'Portuguese');
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747730', 'Marathi', '"vTpD;!Tm:RMk~GJ;@Lm@^,M4: ~H&;(X9G5@[\=&6bP`7.Vri"', TRUE);
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747739', 'Portuguese', 'xN;\w~hhk6Mp[\}\LF7(/Cb%:Dov<mq$~BC}^TinZHzu8Z(t4N}hm', TRUE);
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747747', 'English', 'q01rD2HIs', TRUE);
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747756', 'Hindi', '"XKobQ QuEzb}L%fJAJPK-rQTl1Geu9S,&1gv7bIS15rjv$$(!(xCB"', TRUE);
 insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747764', 'Marathi', '"L>g!GYowGpQbM{4`w5;.oqDF Yk,5Z<~eI:E,C"', TRUE);
-insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-11-27 15:33:49.747772', 'Portuguese', 'VTM6K', TRUE);
+insert into anomalia values (DEFAULT, '( ( 10 , 10 ) , ( 20 , 20 ) )', 'PLACEHOlDER FOR BYTEA', '2019-01-27 15:33:49.747772', 'Portuguese', 'VTM6K', FALSE);
 insert into anomalia_traducao values (12, '( ( 20 , 20 ) , ( 30 , 30 ) )', 'Russian');
 insert into incidencia values (1, 5, 'sea');
 insert into incidencia values (3, 2, 'against');

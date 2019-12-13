@@ -18,6 +18,7 @@
                   $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                  $db->beginTransaction();
                   
                   $sql = "INSERT into duplicado (item1, item2) values (?, ?);";
 
@@ -25,11 +26,13 @@
 
                   $result->execute([$item1, $item2]);
 
+                  $db->commit();
+
                   $db = null;
             }
             catch (PDOException $e){
                   $caught = true;
-                  echo("<p>ERROR: {$e->getMessage()}</p>");
+                  $db->rollBack();
             }
             if(!$caught){
                   echo("<h1>Registados duplicados com sucesso!</h1>");
@@ -38,7 +41,7 @@
             }
       ?>
        <div>
-            <button onclick="location.href='main.html'" type="button">Home</button>
+            <button onclick="location.href='main.html'" type="button" id="home">Home</button>
       </div>
       </body>
 </html>

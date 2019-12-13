@@ -6,7 +6,7 @@
     <body>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800,300" rel="stylesheet" type="text/css" /> 
         <h1>Inserir proposta:</h1>
-        <form id="form_insert_item" action="insert_proposal.php" method="post">
+        <form id="form_insert_proposal" action="insert_proposal.php" method="post">
             <h3>Anomalia</h3>
             <?php
                 $host = "db.ist.utl.pt";
